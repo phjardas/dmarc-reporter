@@ -6,7 +6,9 @@ import {
   type TerraformGenerator,
 } from "terraform-generator";
 import { tags } from "../tags";
+import type { Tables } from "./db";
 import type { Locals } from "./locals";
+import type { Topics } from "./sns";
 import type { Variables } from "./variables";
 
 export type LambdaArgs = {
@@ -27,24 +29,42 @@ export class LambdaFactory {
       vars,
       locals,
       bucket,
+      tables,
+      topics,
     }: {
       vars: Variables;
       locals: Locals;
       bucket: Resource;
+      tables: Tables;
+      topics: Topics;
     }
   ) {
     this.vars = vars;
     this.locals = locals;
-    this.role = this.defineRole({ bucket });
+    this.role = this.defineRole({ bucket, tables, topics });
 
     this.environment = {
       NODE_ENV: "production",
       STAGE: vars.stack,
       TZ: "Europe/Berlin",
+      ...Object.fromEntries(
+        Object.entries(tables).map(([name, table]) => [
+          `DYNAMODB_TABLE_${name.toUpperCase()}`,
+          table.table.attr("name"),
+        ])
+      ),
     };
   }
 
-  private defineRole({ bucket }: { bucket: Resource }) {
+  private defineRole({
+    bucket,
+    tables,
+    topics,
+  }: {
+    bucket: Resource;
+    tables: Tables;
+    topics: Topics;
+  }) {
     const role = this.tfg.resource("aws_iam_role", "lambda", {
       name: fn("format", "%s-lambda", this.locals.resourcePrefix),
       assume_role_policy: fn(
@@ -89,6 +109,58 @@ export class LambdaFactory {
     this.tfg.resource("aws_iam_role_policy_attachment", "lambda_s3", {
       role: role.attr("name"),
       policy_arn: s3Policy.attr("arn"),
+    });
+
+    const dynamodbPolicy = this.tfg.resource(
+      "aws_iam_policy",
+      "lambda_dynamodb",
+      {
+        name: fn("format", "%s-lambda-dynamodb", this.locals.resourcePrefix),
+        policy: fn(
+          "jsonencode",
+          map({
+            Version: "2012-10-17",
+            Statement: [
+              map({
+                Action: ["dynamodb:*"],
+                Effect: "Allow",
+                Resource: Object.values(tables).flatMap(({ table }) => [
+                  table.attr("arn"),
+                  table.attr("stream_arn"),
+                  fn("format", "%s/index/*", table.attr("arn")),
+                ]),
+              }),
+            ],
+          })
+        ),
+      }
+    );
+
+    this.tfg.resource("aws_iam_role_policy_attachment", "lambda_dynamodb", {
+      role: role.attr("name"),
+      policy_arn: dynamodbPolicy.attr("arn"),
+    });
+
+    const snsPolicy = this.tfg.resource("aws_iam_policy", "lambda_sns", {
+      name: fn("format", "%s-lambda-sns", this.locals.resourcePrefix),
+      policy: fn(
+        "jsonencode",
+        map({
+          Version: "2012-10-17",
+          Statement: [
+            map({
+              Action: ["sns:Publish"],
+              Effect: "Allow",
+              Resource: Object.values(topics).map((topic) => topic.attr("arn")),
+            }),
+          ],
+        })
+      ),
+    });
+
+    this.tfg.resource("aws_iam_role_policy_attachment", "lambda_sns", {
+      role: role.attr("name"),
+      policy_arn: snsPolicy.attr("arn"),
     });
 
     return role;

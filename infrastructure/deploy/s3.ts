@@ -20,5 +20,16 @@ export function defineBucket(
     },
   });
 
+  tfg.resource("aws_s3_bucket_lifecycle_configuration", "emails", {
+    bucket: bucket.attr("id"),
+    rule: {
+      id: "expire",
+      status: "Enabled",
+      expiration: {
+        days: 30,
+      },
+    },
+  });
+
   return { bucket };
 }

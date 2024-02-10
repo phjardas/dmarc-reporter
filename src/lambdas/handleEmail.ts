@@ -2,6 +2,7 @@ import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import type { SESMessage, SNSEvent, SNSEventRecord } from "aws-lambda";
 import { type Readable } from "stream";
 import { streamToString } from "../lib/stream";
+import { handleEmail } from "../service/handleEmails";
 
 export async function handler(event: SNSEvent) {
   await Promise.all(event.Records.map(handleRecord));
@@ -51,8 +52,4 @@ async function handleMail({
   } catch (error: unknown) {
     console.error("[%s] Error handling message:", error);
   }
-}
-
-async function handleEmail(messageId: string, body: string) {
-  console.log("[%s] Handling email: %s", messageId, body);
 }

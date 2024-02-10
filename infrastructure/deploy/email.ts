@@ -3,9 +3,9 @@ import {
   type Resource,
   type TerraformGenerator,
 } from "terraform-generator";
-import { tags } from "../tags";
 import { rmap } from "../utils";
 import type { Locals } from "./locals";
+import type { Topics } from "./sns";
 import type { Variables } from "./variables";
 
 export function defineEmail(
@@ -14,16 +14,14 @@ export function defineEmail(
     vars,
     locals,
     bucket,
-  }: { vars: Variables; locals: Locals; bucket: Resource }
+    topics,
+  }: { vars: Variables; locals: Locals; bucket: Resource; topics: Topics }
 ) {
   const identity = tfg.resource("aws_ses_domain_identity", "domain-identity", {
     domain: vars.domain,
   });
 
-  const topic = tfg.resource("aws_sns_topic", "emails", {
-    name: fn("format", "%s-emails", locals.resourcePrefix),
-    tags: tags(vars),
-  });
+  const topic = topics.emails;
 
   const bucketPolicy = tfg.resource("aws_s3_bucket_policy", "ses-emails", {
     bucket: bucket.attr("id"),
