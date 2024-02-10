@@ -4,12 +4,19 @@
   "sideEffects": false,
   "scripts": {
     "clean": "shx rm -rf dist",
-    "create-env": "ts-node --project tsconfig.local.json scripts/create-env.ts",
-    "infra:deploy": "npm run infra:generate && terraform -chdir=infrastructure apply --auto-approve",
-    "infra:generate": "ts-node --project tsconfig.local.json -r dotenv/config infrastructure",
+    "build": "npx esbuild --bundle --platform=node --target=node20 --outdir=dist --define:process.env.NODE_ENV=\\\"production\\\" src/lambdas/*",
+    "bundle": "ts-node --project tsconfig.local.json -r dotenv/config scripts/bundle-lambdas.ts",
+    "infra:code": "npm run infra:code:generate && terraform -chdir=infrastructure/code apply --auto-approve",
+    "infra:code:generate": "ts-node --project tsconfig.local.json -r dotenv/config infrastructure/code",
+    "infra:deploy": "npm run infra:deploy:generate && terraform -chdir=infrastructure/deploy apply --auto-approve",
+    "infra:deploy:generate": "ts-node --project tsconfig.local.json -r dotenv/config infrastructure/deploy",
     "cli": "ts-node --project tsconfig.local.json -r dotenv/config src/cli"
   },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.511.0"
+  },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.133",
     "@types/node": "^20.11.17",
     "aws-lambda": "^1.0.7",
     "dotenv": "^16.4.1",
@@ -19,5 +26,8 @@
     "terraform-generator": "^6.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "volta": {
+    "node": "20.11.0"
   }
 }

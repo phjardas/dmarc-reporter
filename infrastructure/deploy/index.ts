@@ -1,8 +1,10 @@
+import { init } from "../terraform";
+import { rmap } from "../utils";
 import { defineEmail } from "./email";
+import { defineHandlers } from "./handlers";
+import { LambdaFactory } from "./lambda";
 import { defineLocals } from "./locals";
 import { defineBucket } from "./s3";
-import { init } from "./terraform";
-import { rmap } from "./utils";
 import { defineVariables } from "./variables";
 
 const tfg = init();
@@ -11,7 +13,10 @@ const vars = defineVariables(tfg);
 const locals = defineLocals(tfg, { vars });
 
 const { bucket } = defineBucket(tfg, { vars, locals });
-const { dnsRecords } = defineEmail(tfg, { vars, locals, bucket });
+const { topic, dnsRecords } = defineEmail(tfg, { vars, locals, bucket });
+const lambda = new LambdaFactory(tfg, { vars, locals, bucket });
+
+defineHandlers(tfg, { vars, locals, lambda, topic });
 
 tfg.provider("aws", { region: vars.region });
 

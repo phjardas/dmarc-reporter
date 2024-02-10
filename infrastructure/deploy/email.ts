@@ -3,8 +3,9 @@ import {
   type Resource,
   type TerraformGenerator,
 } from "terraform-generator";
+import { tags } from "../tags";
+import { rmap } from "../utils";
 import type { Locals } from "./locals";
-import { rmap } from "./utils";
 import type { Variables } from "./variables";
 
 export function defineEmail(
@@ -21,9 +22,10 @@ export function defineEmail(
 
   const topic = tfg.resource("aws_sns_topic", "emails", {
     name: fn("format", "%s-emails", locals.resourcePrefix),
+    tags: tags(vars),
   });
 
-  tfg.resource("aws_s3_bucket_policy", "ses-emails", {
+  const bucketPolicy = tfg.resource("aws_s3_bucket_policy", "ses-emails", {
     bucket: bucket.attr("id"),
     policy: fn(
       "jsonencode",
@@ -42,7 +44,7 @@ export function defineEmail(
     ),
   });
 
-  tfg.resource("aws_sns_topic_policy", "ses-emails", {
+  const topicPolicy = tfg.resource("aws_sns_topic_policy", "ses-emails", {
     arn: topic.attr("arn"),
     policy: fn(
       "jsonencode",
@@ -81,9 +83,11 @@ export function defineEmail(
         position: 2,
       },
     ],
+    depends_on: [bucketPolicy, topicPolicy],
   });
 
   return {
+    topic,
     dnsRecords: [
       {
         name: fn("format", "_amazonses.%s", vars.domain),
