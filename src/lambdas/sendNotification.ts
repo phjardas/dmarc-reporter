@@ -55,7 +55,7 @@ function getResult(record: Record<string, unknown>): Result {
   if (!policyEvaluated || typeof policyEvaluated !== "object") return "unknown";
 
   const { dkim, spf } = policyEvaluated as Record<string, unknown>;
-  if (dkim === "pass" && spf === "pass") return "pass";
+  if (dkim === "pass" || spf === "pass") return "pass";
   if (dkim === "fail" || spf === "fail") return "fail";
   return "unknown";
 }
