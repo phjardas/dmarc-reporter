@@ -1,0 +1,49 @@
+Return-Path: <dmarcreports@secureserver.net>
+Received: from p3plemlrelay02.prod.phx3.secureserver.net (p3plemlrelay02.prod.phx3.secureserver.net [68.178.213.120])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 2ueo5npqfslgsmo09qbeuaobca1j35i3hrckito1
+ for reports@dmarc.jessica-kioschis.de;
+ Sun, 10 Mar 2024 11:28:15 +0000 (UTC)
+Received-SPF: pass (spfCheck: domain of secureserver.net designates 68.178.213.120 as permitted sender) client-ip=68.178.213.120; envelope-from=dmarcreports@secureserver.net; helo=p3plemlrelay02.prod.phx3.secureserver.net;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of secureserver.net designates 68.178.213.120 as permitted sender) client-ip=68.178.213.120; envelope-from=dmarcreports@secureserver.net; helo=p3plemlrelay02.prod.phx3.secureserver.net;
+ dmarc=pass header.from=secureserver.net;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFISVg0STFSdnBmYkc4bDFKYkxsSGhRb015RzBkRWtBalNud0duRk85UkhEOHpNc21jWmZvTEFSYmFFVlRsV0Y2L2s3UVhOd04rUmJQTWI5OGZpV29YUFkxcVY1RTRENzk5NWtjNTNlSzN5RkFCT1Q0RGIvYTVnc0R4b3RkblIyMlZtc3hlSDJCZXpZT0ppbm1iaEE5bFdPcDIrV1VjSWdpSzlheGlkZFJkZEw2bjJmSURBVXdabWlYZVBwSGNRZHhMMENWNjd0aFhSdWJPMmdyb2RRc1kyb1plNDdRL0RnNTJBQ3g3Yk5QRnV2U0JPQ0JXckZiNmIyWnU3OS9SeGl5MjlJY053Q2J4aWRueG9QQW9qL2x2cmI3dStIazJqa0p2cEVFOWl6VmxjREJUKzYxSzJCN1l3KzZrRnI0cDB3Nmc9
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=rtS5ZOB2Cj3ZQ937kT4ZnhmeOmv8fLET92qOJXwjiCJTy6DJgDB39vsDQoHOskCpWicbrs3PFPyC4CZtxG0NOueA7tKJaQzZJSFUepWjpmE+wmaUVLfnp7J8mIrQXVLOURC+40+mUrlV8Z84GNj7SfiUYtSo7jWZCOdqHsuD2o8=; c=relaxed/simple; s=shh3fegwg5fppqsuzphvschd53n6ihuv; d=amazonses.com; t=1710070095; v=1; bh=k6ns3Wou9Yesg5ps7r7sXTLgTFHAS1PbLOxOHMkqmHk=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: from localhost ([10.36.162.125])
+	by :RELAY-APP: with ESMTP
+	id jHLirFKMK9fabjHLirjEST; Sun, 10 Mar 2024 04:28:14 -0700
+From: <dmarcreports@secureserver.net>
+To: <reports@dmarc.jessica-kioschis.de>
+Subject: Report domain: jessica-kioschis.de submitter: dmarcreports@secureserver.net report-id: jessica-kioschis.de-1710070094
+X-Mailer: "opendmarc-reports (Release: v1.1, Build: 59973b9b3149a7b481dec8382d9324ae33ebcfeb, Date: 2018-07-24T08:58:38+0200)" <@>
+Date: Sun, 10 Mar 2024 11:28:14 +0000
+Message-ID: <"jessica-kioschis.de-1710070094" <@>@secureserver.net>>
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="ea4f90f7d601ef7fe49acd02c51c"
+
+--ea4f90f7d601ef7fe49acd02c51c
+Content-Type: application/zip
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="secureserver.net!jessica-kioschis.de!1709981106!1709981106.zip"
+
+UEsDBBQACAAIAAAAAAAAAAAAAAAAAAAAAAA+AAAAc2VjdXJlc2VydmVyLm5ldCFqZXNzaWNhLWtp
+b3NjaGlzLmRlITE3MDk5ODExMDYhMTcwOTk4MTEwNi54bWysVMFymzAQvecrGB9yC4JOE9uTjdJD
+p/2B9szI0hpvDZKqFW7z9x0igbHrS2d6Qnr7tPveQwCvv/uuOGFgcvZlVZfVqkCrnSHbvqy+f/vy
+sFkVr/IO9ohmp/RR3hUFBPQuxKbHqIyKasSKAlxoG6t6lF/dZ2XMW6ldD2JGEwl7RZ287+Kz6VXQ
+qRN/YtRDQMZwwlBajPdtfAaRyOlgnklG/kBm0urhSI71gbg0+FCv66paV9X2I4gzM500KmITlG2z
+hqKAHbZkZb2utttNXVdPIBIy1dGai+q4T83EZbd52jIL8K4j/db4YdcRH3AW4npF9pZ+ELmWiMoc
+qZcMIi0yyH7/jo3PBHn5c1BB2UgWQfiM8iXME+51lHVVgRgX79pv6YSA2oVJcnC/5lDYDUFjQ15+
+qLbl5rGsn9ZlvX4Eca5MXO0GG2UNIi0mOA/Ek+oGFadgUjjE3jFFclZaNwpfIgvemIhXzCDO4WTf
++1yYE1qYvJoJYrYGZNBG2hMGno8dUBkMzT64/vYLWxJyx7/6gBrioQnIQxfPrRfq/uFS5I9gbJVd
+5s1sdOn6Kpr/N2RxIcW1u5Gd7g6I+X/xJwAA//9QSwcIRQD3qcIBAABiBAAAUEsBAhQAFAAIAAgA
+AAAAAEUA96nCAQAAYgQAAD4AAAAAAAAAAAAAAAAAAAAAAHNlY3VyZXNlcnZlci5uZXQhamVzc2lj
+YS1raW9zY2hpcy5kZSExNzA5OTgxMTA2ITE3MDk5ODExMDYueG1sUEsFBgAAAAABAAEAbAAAAC4C
+AACtAEZyb206IDxkbWFyY3JlcG9ydHNAc2VjdXJlc2VydmVyLm5ldD4gfCBPcmc6IEdvRGFkZHku
+Y29tIHwgRG9tYWluIDogamVzc2ljYS1raW9zY2hpcy5kZSB8IERhdGUgRnJvbSA6IDIwMjQtMDMt
+MDkgMTA6NDU6MDYgKzAwMDAgVVRDIHwgRGF0ZSBUbyA6IDIwMjQtMDMtMDkgMTA6NDU6MDYgKzAw
+MDAgVVRD
+
+
+--ea4f90f7d601ef7fe49acd02c51c--
+

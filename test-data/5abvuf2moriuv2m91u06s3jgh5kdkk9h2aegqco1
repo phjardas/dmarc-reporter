@@ -1,0 +1,82 @@
+Return-Path: <dmarcreport@microsoft.com>
+Received: from inbound-smtp.eu-west-1.amazonaws.com ([104.47.118.62])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 5abvuf2moriuv2m91u06s3jgh5kdkk9h2aegqco1
+ for reports@dmarc.jessica-kioschis.de;
+ Sun, 03 Mar 2024 14:15:12 +0000 (UTC)
+Received-SPF: pass (spfCheck: domain of microsoft.com designates 104.47.118.62 as permitted sender) client-ip=104.47.118.62; envelope-from=dmarcreport@microsoft.com; helo=inbound-smtp.eu-west-1.amazonaws.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of microsoft.com designates 104.47.118.62 as permitted sender) client-ip=104.47.118.62; envelope-from=dmarcreport@microsoft.com; helo=inbound-smtp.eu-west-1.amazonaws.com;
+ dmarc=pass header.from=microsoft.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFHMWRUQXlxYk8vcWZIemZHNC9SNnRYbGtoTjB0NmV4VXJEU09EelpIQmhNRmlybDZOUThpWHVOZWRvS3FIcFQrSlZla3ZjRHdQbmkvMy9WNTdFODJjVEVhQmZtMzNVSTl6RVdYVk41TmFha1VuandsT0xCRXZtUytPQ2RHbnZGSXIzVHpVVzluSjNxZXRHcTBvNUlrUW1NOHFhT3puaW9VbmNrMWl1M0Y4T25YZnB3M29HZDZvMThBZnY2d0daelhHL2RuOVJpUTF5bW92YUNhQ3VVeXNvV2M2WTZCTi8raFE3WUI2ZnlLcDJjU0t3VzNhWnM2MUpQR1psRDQyeU5rQ053WTVxdHNMZGNHMmE3MDg4dVBqSEZ6MkVZTWZlVG8xUzZ3MGpDTWROUmtWNEgrOWlCYTB1a3p2TmpTSjdFSms9
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=YT/YkXCf/BhAonDFxffb7gg6YbEl8UOQg5kEdS0DuYboS43h+pkLiV7heGeKZxWbPgzxIEPD8Z2zQHntfS65qSwQOHxfyHKDi0NIK/X5oWGU/vEdo7B+kb+1tbo4LdDWj9SWuymIX/lJPjFojLCEwmfS1QbN1N6a5AZK7zYjlWs=; c=relaxed/simple; s=shh3fegwg5fppqsuzphvschd53n6ihuv; d=amazonses.com; t=1709475312; v=1; bh=s8i3uaNoJt4KfNvfGlp8/sADBT0kiBRkg2A6KQtc0xc=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Return-Path: <>
+Message-ID: <d8d2172145bc4c638e675fc9f06a8764@microsoft.com>
+X-Sender: <dmarcreport@microsoft.com> XATTRDIRECT=Originating XATTRORGID=xorgid:96f9e21d-a1c4-44a3-99e4-37191ac61848
+X-MS-Exchange-Organization-Notifications: True
+X-MS-Exchange-Organization-SRS: Skip
+MIME-Version: 1.0
+From: "DMARC Aggregate Report" <dmarcreport@microsoft.com>
+To: <reports@dmarc.jessica-kioschis.de>
+Subject: =?utf-8?B?W1ByZXZpZXddIFJlcG9ydCBEb21haW46IGplc3NpY2Eta2lvc2NoaXMuZGUgU3VibWl0dGVyOiBlbnRlcnByaXNlLnByb3RlY3Rpb24ub3V0bG9vay5jb20gUmVwb3J0LUlEOiBkOGQyMTcyMTQ1YmM0YzYzOGU2NzVmYzlmMDZhODc2NA==?=
+Content-Type: multipart/mixed;
+	boundary="_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_"
+
+This is a multi-part message in MIME format.
+
+--_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: multipart/related;
+	boundary="_rv_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_"
+
+--_rv_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: multipart/alternative;
+	boundary="_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_"
+
+--_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+
+--_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: base64
+
+PGRpdiBzdHlsZSA9ImZvbnQtZmFtaWx5OlNlZ29lIFVJOyBmb250LXNpemU6MTRweDsiPlRoaXMgaX
+MgYSBETUFSQyBhZ2dyZWdhdGUgcmVwb3J0IGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiBGb3Ig
+RW1haWxzIHJlY2VpdmVkIGJldHdlZW4gMjAyNC0wMy0wMSAwMDowMDowMCBVVEMgdG8gMjAyNC0wMy
+0wMiAwMDowMDowMCBVVEMuPC8gZGl2PjxiciAvPjxiciAvPllvdSdyZSByZWNlaXZpbmcgdGhpcyBl
+bWFpbCBiZWNhdXNlIHlvdSBoYXZlIGluY2x1ZGVkIHlvdXIgZW1haWwgYWRkcmVzcyBpbiB0aGUgJ3
+J1YScgdGFnIG9mIHlvdXIgRE1BUkMgcmVjb3JkIGluIEROUyBmb3IgamVzc2ljYS1raW9zY2hpcy5k
+ZS4gUGxlYXNlIHJlbW92ZSB5b3VyIGVtYWlsIGFkZHJlc3MgZnJvbSB0aGUgJ3J1YScgdGFnIGlmIH
+lvdSBkb24ndCB3YW50IHRvIHJlY2VpdmUgdGhpcyBlbWFpbC48YnIgLz48YnIgLz48ZGl2IHN0eWxl
+ID0iZm9udC1mYW1pbHk6U2Vnb2UgVUk7IGZvbnQtc2l6ZToxMnB4OyBjb2xvcjojNjY2NjY2OyI+UG
+xlYXNlIGRvIG5vdCByZXNwb25kIHRvIHRoaXMgZS1tYWlsLiBUaGlzIG1haWxib3ggaXMgbm90IG1v
+bml0b3JlZCBhbmQgeW91IHdpbGwgbm90IHJlY2VpdmUgYSByZXNwb25zZS4gRm9yIGFueSBmZWVkYm
+Fjay9zdWdnZXN0aW9ucywga2luZGx5IG1haWwgdG8gZG1hcmNyZXBvcnRmZWVkYmFja0BtaWNyb3Nv
+ZnQuY29tLjxiciAvPjxiciAvPk1pY3Jvc29mdCByZXNwZWN0cyB5b3VyIHByaXZhY3kuIFJldmlldy
+BvdXIgT25saW5lIFNlcnZpY2VzIDxhIGhyZWYgPSJodHRwczovL3ByaXZhY3kubWljcm9zb2Z0LmNv
+bS9lbi11cy9wcml2YWN5c3RhdGVtZW50Ij5Qcml2YWN5IFN0YXRlbWVudDwvYT4uPGJyIC8+T25lIE
+1pY3Jvc29mdCBXYXksIFJlZG1vbmQsIFdBLCBVU0EgOTgwNTIuPC8gZGl2ID4=
+
+--_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_--
+
+
+--_rv_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_--
+
+--_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: application/gzip
+Content-Transfer-Encoding: base64
+Content-ID: <9fc9ba26-cfff-4d4a-9a5d-1880670bb08a>
+name="enterprise.protection.outlook.com!jessica-kioschis.de!1709251200!1709337600.xml.gz"
+Content-Description: enterprise.protection.outlook.com!jessica-kioschis.de!1709251200!1709337600.xml.gz
+Content-Disposition: attachment; filename="enterprise.protection.outlook.com!jessica-kioschis.de!1709251200!1709337600.xml.gz";
+
+H4sIAAAAAAAEAJVUPZPbIBDtM5P/4HF/QpI/ZN9wXJp0yaRIk06DYWURS4IAOl/+fVYWxrJ9k1waG9
+4+dt8+FtHn17aZvYB1SndP8yxJ58/s4wdaAcgdF4cZhjv3+Ork07z23jwScjwek+Mi0XZP8jTNyI+v
+X76LGlo+j2T1b/KD6pznnYA5lpvNaJDAUAEl580pYsFo68sWPJfc8xOIMKYsO94C+9x5sMYqB7NvvW
++0PlASg4GMBVXDZMutGNN9apWw2unKJ0K3lIyEwA4VlWRyI/OsyLPlaieWYr3YwLpYVWJbpWu+KdZL
+Si7ccBg1Qml5tz8XR2wHe4WtFek2X2XoAyUjEgnQyVN4sSjWQ3jYh3zkJmEseWUINbpR4ndp+l2jXA
+0XORo769hPcE4J/nBQ2olauUQCZh5jgcnlQbXMUTIuzqgzFbMIDv8BM+xXz1GRVx1mMWfYXeMuBozw
+LBvaGhYBqzRDAH/Hnt6UjxchtI2tWH28OOZ0bwWUyrA83SabVZLnWZIVBdaNkUgWuu9QAiXjIuKhKr
+zwpkeXZYwMxilntFN+mMNODw1NkSlxcMtwh85NjAuOVCFycW/S7W1dvNrYIlUS0MhK4VOYzskLNNpA
+6TWzgBfqTxc5he+5ldXt2wNwTYkna+AS7F/OTQln6fd6Ke99XVpwfeMnPdya9O4JHS2FBoTXlu213j
+fDmJ2BCWmsGawPm4v7VwLo9Gb+X41A91g7GIFKTpt3y5g8KHLn1MAPs4+vJHyM2R/VQzy3rgUAAA==
+
+--_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_--
+

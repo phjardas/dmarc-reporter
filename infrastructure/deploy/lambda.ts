@@ -97,7 +97,7 @@ export class LambdaFactory {
           Version: "2012-10-17",
           Statement: [
             map({
-              Action: ["s3:GetObject"],
+              Action: ["s3:GetObject", "s3:PutObject"],
               Effect: "Allow",
               Resource: fn("format", "%s/*", bucket.attr("arn")),
             }),

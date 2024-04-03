@@ -1,0 +1,133 @@
+Return-Path: <dmarcreport@microsoft.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2122.outbound.protection.outlook.com [40.107.237.122])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id en6tm7tkiolun5f9j6lv7snj86g15813tas2g5g1
+ for reports@dmarc.jessica-kioschis.de;
+ Thu, 14 Mar 2024 14:06:08 +0000 (UTC)
+Received-SPF: pass (spfCheck: domain of microsoft.com designates 40.107.237.122 as permitted sender) client-ip=40.107.237.122; envelope-from=dmarcreport@microsoft.com; helo=NAM12-BN8-obe.outbound.protection.outlook.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of microsoft.com designates 40.107.237.122 as permitted sender) client-ip=40.107.237.122; envelope-from=dmarcreport@microsoft.com; helo=NAM12-BN8-obe.outbound.protection.outlook.com;
+ dkim=pass header.i=@notification.microsoft.com;
+ dmarc=pass header.from=microsoft.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFIS081M0tPTmd4NWNiWW9yL3kwMnVLODA1RzhPZVFKRVAwdmt5WHhlU1pybnZwTFZwczdmK2NmYTdhNDFBMnR2NG1Gb1lRV3E0NjJxSU51Um92ZENKWk5NaUVPT3VObFNvQ0o1cFVTbTF2WGlYVCtSdGFIYURkMWNybVZWS2hlMjJoeWplcE9XeDB0QzE0bDROZDlFT0N3TmFyYkZkNFcveGh3SUZTWDJjTVExMlhHemd1aGEvMDVVYVRpaldzVTlFNnhDS3pzdFNaUCtSb0hPa1RXMHVHeDM3TFhPMDZYdm93eU8xY0J3cXkzclAzcjNkRGU3RE5UeFR6cTJ3UU5JSHRuSHpVYWF4bzk2elNXblhNR1pvYnEyRVJWaDJwb2JrQnk4QzlVejVZS2RyZHU2N05ld0plZThtK2Z0eTRPZHM9
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=AQ6fnC8xGjB/CZE7m3OfTofj6+RrLTokyXizEkdxs5Cm5FMZTRx7txkDk/PMwzXAsBE7ZNWMJUGfmQHG3hM5b/3ceXhP2/Ca2VhfGtAABZAH4q6168xw5pv8p1/bBxJA57o3AdcgAQQj0hmV4O5QpbcZ4MXyYaKiYR6S6nEeTjs=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1710425168; v=1; bh=xp2rgJv9Ea45TId/IRuxL8e19o2VCIj68UphUPcCOtQ=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BR0i9L5ttVrsT0p08l3nB569JPq9zCVhspjUqcNcn5frfLbby+qbJVCa35TPGiTUIIiE1u/sg0JLdeFpxKB7k+Mtni06AIzVc+WJM4rNHj3KXhs58/rk44VWxxv/aPe3UEc/Ao+2yrSjWflqnnyifEYsozEiOBRauISZcUcefCuoap3C0ZAMbPPaWXCkkWceNCAFmpU78uRjaSWoepzFOI7Cpz6Fb/S8K/ZGXsoPZe5JWTxX2plR9yrRuylloF9TIHq46AVRCxNkSDWFwXii4SxiTKWXJukk0hT5kI9mOsw+zdwg+O7RajCKRx+RCbptkCi5T+c9iOV9EupN6XgjHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qx3yc1VKUY8zeny0U5gHbpq/n+i2dwesT0gboO+HwuY=;
+ b=LBAhTniHHXwvPM1c8sxnIUmGAo+MoUI7SCblOht1tMKyPj6DKC3u8PgIDUO1T0G4KTzAO2qQkCGlLuI03GFF1Gi1yPy/7MrEnK1nm7cAl8eAbA6szKKznQTZo1r3RiDy2DTy3P5yr5xouMtPXjOztTNZIZcjEmOtZiYG1eks+P50/Pqjpj5g4or1DSLTqlyaHA6iFDzwZrX5TCC5FDtmorUYMEJC3ko0af1UV+RqoKnUEjKjT+F7mCX7GQtYcWa/VV6ALG4lh8eDMFW58aITF+VlGNDCV2Q3gwMoVKlZpL10MJOwSihQs4vh6MNXXwxGf0B84pOTQAkPmVqG9Chj2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none
+ action=none header.from=microsoft.com; dkim=none (message not signed);
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=notification.microsoft.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qx3yc1VKUY8zeny0U5gHbpq/n+i2dwesT0gboO+HwuY=;
+ b=LJxXp0g4D3xT/ZpQbYPhSidqkPdy1HMfyhO6rV3ELVxbpT7p4W4DNYstampVXYwLNxsooReQJwT1GD9HP7SsG+yzAK1UicSp+PriFzJSJMyOk0XH7y6C0avoNedkEUyO9iXmL5egQ6UFJEf5QoTJwltyaPcKAp3EKadGB4k7Y7r+wOlW3Zxpfmu22ke50h1lyRIjxtGfr9D7gIwOXWl0a3BPJjt8wYueGWBxks5mxZydh8kDdgHfW/MEsIdiiD5ts9rZq8NZ9d/aiNoMX/aTvnbb1gpveW5mnHKojBhxmR7J2Uv/N/V5tOOLwDw+gO1n6nQDP/wAtOR4VwU1bDvZaw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microsoft.com;
+Received: from CY5PR22CA0042.namprd22.prod.outlook.com (2603:10b6:930:1d::35)
+ by DM8PR18MB4503.namprd18.prod.outlook.com (2603:10b6:8:3e::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.20; Thu, 14 Mar
+ 2024 14:06:05 +0000
+Received: from CY4PEPF0000E9D3.namprd03.prod.outlook.com
+ (2603:10b6:930:1d:cafe::1d) by CY5PR22CA0042.outlook.office365.com
+ (2603:10b6:930:1d::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.21 via Frontend
+ Transport; Thu, 14 Mar 2024 14:06:05 +0000
+Received: from nam10.map.protection.outlook.com (2a01:111:f400:fe53::30) by
+ CY4PEPF0000E9D3.mail.protection.outlook.com (2603:10b6:92f::1002:0:12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.12 via Frontend
+ Transport; Thu, 14 Mar 2024 14:06:05 +0000
+Return-Path: dmarcreport@microsoft.com
+Message-ID: <2460bc71e0434e8bb27a6fb04abea6dd@microsoft.com>
+X-Sender: <dmarcreport@microsoft.com> XATTRDIRECT=Originating XATTRORGID=xorgid:96f9e21d-a1c4-44a3-99e4-37191ac61848
+MIME-Version: 1.0
+From: "DMARC Aggregate Report" <dmarcreport@microsoft.com>
+To: <reports@dmarc.jessica-kioschis.de>
+Subject: =?utf-8?B?W1ByZXZpZXddIFJlcG9ydCBEb21haW46IGplc3NpY2Eta2lvc2NoaXMuZGUgU3VibWl0dGVyOiBlbnRlcnByaXNlLnByb3RlY3Rpb24ub3V0bG9vay5jb20gUmVwb3J0LUlEOiAyNDYwYmM3MWUwNDM0ZThiYjI3YTZmYjA0YWJlYTZkZA==?=
+Content-Type: multipart/mixed;
+	boundary="_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_"
+Date: Thu, 14 Mar 2024 14:06:05 +0000
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D3:EE_|DM8PR18MB4503:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0fdf193-fe99-466e-ae65-08dc442fe3b2
+X-MS-Exchange-SenderADCheck: 2
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Ectann+59TApCof3vmpxI+SK2B7RDC1UpJ2PJnylGpSKr+ugop0ImYM8lZ6/MphzMpCmUGx69KbT/Sqc+Z0ms+FVP2BS6U89/lSirEl/+O5RkcKlz1pu6n+4ZA93wrfzXSGRoZ0qLMbYVcDFpQ/hUw0MpvP9fL6ET1DPnbie8tRlGglTgpS2ZDO3+Qs/CC2z6+Q6e3xNT6K0HpOTQbYoZYL94aYSWOeXjPZYmnBfr/MFzkyWS+MPkSmh/s/U4W183OuZejmp5pRD8jV191peSCRBy5ontXrzGPI0IKkq7GvKvtqylZuVZaA/hzLAtlyZ0N7NPhEVIO8XOr76DSKe8ytrJcGm39lJyia9RkYyj0f/2QkSpBrYZfopZEYadTy7zaXi/yiYezy107H47XfQ6ZtQ3Rvki3611O0fEiSvzbk8HQEgg/s2UFzDVWbNPtAyDSkf6C6tydKC/aCOvptYd71dJ+TDhEI2ncNwOTWw9OL+4/DZbbg7f7I9a3qiWAbpjnfkhf1jLhqgkF6Kel6mRN2C1Vkm1e/tytch2b9Fza1NO8sR0hVBIR6yQwdLSIOvyU0B6oJafIho35KGwPR29jTqoP3qnpr+iZ9dX7PWlrY=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:nam10.map.protection.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(34036007)(61400799018)(41320700004);DIR:OUT;SFP:1102;
+X-OriginatorOrg: dmarcrep.onmicrosoft.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 14:06:05.2963
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0fdf193-fe99-466e-ae65-08dc442fe3b2
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D3.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-Id: 96f9e21d-a1c4-44a3-99e4-37191ac61848
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR18MB4503
+
+This is a multi-part message in MIME format.
+
+--_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: multipart/related;
+	boundary="_rv_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_"
+
+--_rv_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: multipart/alternative;
+	boundary="_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_"
+
+--_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+
+
+--_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: base64
+
+PGRpdiBzdHlsZSA9ImZvbnQtZmFtaWx5OlNlZ29lIFVJOyBmb250LXNpemU6MTRweDsiPlRoaXMgaX
+MgYSBETUFSQyBhZ2dyZWdhdGUgcmVwb3J0IGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiBGb3Ig
+RW1haWxzIHJlY2VpdmVkIGJldHdlZW4gMjAyNC0wMy0xMiAwMDowMDowMCBVVEMgdG8gMjAyNC0wMy
+0xMyAwMDowMDowMCBVVEMuPC8gZGl2PjxiciAvPjxiciAvPllvdSdyZSByZWNlaXZpbmcgdGhpcyBl
+bWFpbCBiZWNhdXNlIHlvdSBoYXZlIGluY2x1ZGVkIHlvdXIgZW1haWwgYWRkcmVzcyBpbiB0aGUgJ3
+J1YScgdGFnIG9mIHlvdXIgRE1BUkMgcmVjb3JkIGluIEROUyBmb3IgamVzc2ljYS1raW9zY2hpcy5k
+ZS4gUGxlYXNlIHJlbW92ZSB5b3VyIGVtYWlsIGFkZHJlc3MgZnJvbSB0aGUgJ3J1YScgdGFnIGlmIH
+lvdSBkb24ndCB3YW50IHRvIHJlY2VpdmUgdGhpcyBlbWFpbC48YnIgLz48YnIgLz48ZGl2IHN0eWxl
+ID0iZm9udC1mYW1pbHk6U2Vnb2UgVUk7IGZvbnQtc2l6ZToxMnB4OyBjb2xvcjojNjY2NjY2OyI+UG
+xlYXNlIGRvIG5vdCByZXNwb25kIHRvIHRoaXMgZS1tYWlsLiBUaGlzIG1haWxib3ggaXMgbm90IG1v
+bml0b3JlZCBhbmQgeW91IHdpbGwgbm90IHJlY2VpdmUgYSByZXNwb25zZS4gRm9yIGFueSBmZWVkYm
+Fjay9zdWdnZXN0aW9ucywga2luZGx5IG1haWwgdG8gZG1hcmNyZXBvcnRmZWVkYmFja0BtaWNyb3Nv
+ZnQuY29tLjxiciAvPjxiciAvPk1pY3Jvc29mdCByZXNwZWN0cyB5b3VyIHByaXZhY3kuIFJldmlldy
+BvdXIgT25saW5lIFNlcnZpY2VzIDxhIGhyZWYgPSJodHRwczovL3ByaXZhY3kubWljcm9zb2Z0LmNv
+bS9lbi11cy9wcml2YWN5c3RhdGVtZW50Ij5Qcml2YWN5IFN0YXRlbWVudDwvYT4uPGJyIC8+T25lIE
+1pY3Jvc29mdCBXYXksIFJlZG1vbmQsIFdBLCBVU0EgOTgwNTIuPC8gZGl2ID4=
+
+--_av_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_--
+
+--_rv_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_--
+
+--_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_
+Content-Type: application/gzip
+Content-Transfer-Encoding: base64
+Content-ID: <11c0cf71-8c06-4dc7-95bc-701c91e7eac6>
+Content-Description: enterprise.protection.outlook.com!jessica-kioschis.de!1710201600!1710288000.xml.gz
+Content-Disposition: attachment; filename="enterprise.protection.outlook.com!jessica-kioschis.de!1710201600!1710288000.xml.gz";
+
+H4sIAAAAAAAEAJVUPZPbIBDtM5P/4HFvfZ1jOzcclyZdMinSpNMgWFlEEhBA1uXfZ2UhWbZvkktjw9
+vH7tu3IPL80jarE1gntXpap1Gyfqbv35ESQBSM1ysMK/f44sTTuvLePMZx3/dR/xBpe4yzJEnjH1+/
+fOcVtGw9k+W/yRupnGeKwxrLrVYkSKCogMTT5hyxYLT1eQueCebZGUQYU+aKtUA/Kw/WWOlg9a3zjd
+Y1iedgIGNB2VDRMsvHdJ9aya12uvQR1y2JR0Jgh4pS0Gy7Swq+TyHZPmzhUBTZnu3KItmyAthOCBJf
+uOEwaoTcMnWciiNWwFFia/s0yZJ0l2CHIzITQIkxfDgkQ3jYh3zxTcK55JUhxOhG8t+56YpGugoucj
+R2puhPcE5ytqmldrySLhKAmcdYYDJRy5Y6Eo+LCXWmpBbB4T9ghv7qGCryUmEWM8HuGndzwHBP06Gt
+YRGwUlME8Hfs6VX5OAiu7dyK1f3FMac7yyGXhmbJx+jwIcrSfbQ9YNk5MHO57hQqIPG4mPFQFE6s6d
+BkMUcG36Qz2kk/XEOlh36WyJI4mGWYQ+MWvgVDyhC5mLdo9rYuTnbukEgB6GMp8SUsr8kJGm0g95q2
+p7re9BJKaBzmgPNEl4T7U6XV7es34Zoyn6yACbB/ObckTE3cKyes81VuwXWNX3Rza9ebr+poLjTAvb
+b0qPWxGe7bBCxIY80whLC5zOFKAFnO6P/VcHSPtoMRqOS8ebOMxcuK75wa+OER4HMJX2X6B/XpF+C3
+BQAA
+
+--_mpm_a4bcd9a515b44b9d8eceb05d7333675fpiotk5m200exchangecorpm_--

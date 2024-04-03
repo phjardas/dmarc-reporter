@@ -1,0 +1,59 @@
+Return-Path: <noreply@dmarc.yahoo.com>
+Received: from sonic324-10.consmr.mail.ne1.yahoo.com (sonic324-10.consmr.mail.ne1.yahoo.com [66.163.187.72])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 58hfr251v6vmale3jd9p00e31nm5tbkuaq1h6b81
+ for reports@dmarc.jessica-kioschis.de;
+ Wed, 27 Mar 2024 12:56:35 +0000 (UTC)
+Received-SPF: neutral (spfCheck: 66.163.187.72 is neither permitted nor denied by domain of _spf.mail.yahoo.com) client-ip=66.163.187.72; envelope-from=noreply@dmarc.yahoo.com; helo=sonic324-10.consmr.mail.ne1.yahoo.com;
+Authentication-Results: amazonses.com;
+ spf=neutral (spfCheck: 66.163.187.72 is neither permitted nor denied by domain of _spf.mail.yahoo.com) client-ip=66.163.187.72; envelope-from=noreply@dmarc.yahoo.com; helo=sonic324-10.consmr.mail.ne1.yahoo.com;
+ dkim=pass header.i=@yahoo.com;
+ dmarc=pass header.from=dmarc.yahoo.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFemtzeVVZc3RKYzJTZFZhdXhUZ1FMeTZPMy9KRnI0YUtTQng2Vm5URml4eG1xZFoyaWFmUElaM0JRTitJRCtjRFlUcUM5MkpGZXZqaVhIcUpqcTNJOGZWaXovVllxQTE5eUlhSG1SMHhESmd0NXdubmdwY1Q3ZklmL0s0ZVJtK3dXNkhUcVRFbEJyUksrb01jWHQ1Y1NnQkFraFhLSStQQjhGL3I3NUV2WTVQYzFSVjIzcVZYOUhYclFURzJyUXphK0M0blBlaHlGMEJoOTBpQ3lTNEZNNWF4NWpvdjBiTUVOUnJaQk1Wb2dEU25OZCtROGliK1VQbDVhUUVDTDZXR1Rxa2NIWFpRWUhzU0tuT3JoWU1KQkFzNk8yT21SdVRLbm8zNVpVWVdZdUttaStiQXlPZTNaUEU3VHJaR1Z0a0k9
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=Lw1Y2oIywtoE9o94fusRjnBcAeiG5M7j9FVnVV9AVx62fZAjHqJXZFpdkUbO5Sqhf8rtyUKfo7GMvF5to00tyhOIkjN78MwoOYCoU6m8LWrkgnOlzrPkW6AxGyrUYFQL29RhEqpwhEyvPDNQaZcCWPXmA103yUI1W8WzliZ3bs4=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1711544195; v=1; bh=tA6aG5UEWFQEgiNDxvzIy00gyzFflEuXi42/KzZbnsI=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1711544193; bh=tA6aG5UEWFQEgiNDxvzIy00gyzFflEuXi42/KzZbnsI=; h=Date:From:To:Subject:From:Subject:Reply-To; b=sFpjf85KAAOsMEXbQ8qfPsTEhyJc/VOzG1hxTXV6pzZKM8xVJutjSQFVvqLZqwqMPLUvgL/AGIFmSRM9lNwPwT8HnF50LNLkCFDF2KuLzZoXyTZW5OkYWRxIVu0QGcyk34Iy+oyvBnGQFfJFYnz5z52ddKXNkgx/YjcGtn702unU7qc/KheL7t1Z3YemRBubDxgDeLywf5a1nyLQ0We7ngCjrPvfubpwsbw/Ai9rqKAXkG2xub40Irn5IQeXbiHwpRsLEzyrQl/Sl/3wuy8moAbXiDI3vkCSyNibKdZia3o7Ng0ASr2qyjNokCIK5O8J7mScl22k+56Yzqw/M6lylg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1711544193; bh=aK3weq0akTdVt5RJbYqpIqt7SRT0W7IslPnIO45CwAr=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=VdtOrjuYzgXXrge8KuFFL2LmHSthccz1iewJkDAQ1z5eT7+Yv5OPhHmc0YbC5aYDgIdZVIXl39Kf6/5GdUeBS9Bs46YAJjxNdu9CtTcklVLVJ/3cyNtbBQcXFLzbXBZV23FkEzgDbaFzZ7ZdUClKWY6l5jxc+i8fzkZh716Zd+ZpAsS+akGcaKZIkfVq3KOja993lx4AyD/KYp4z6eYBjXNukIHSGxlu9LmRXThkZHnJgt34m/1vf+0LPkSuXqmNT6Sq5uAnxsGL1sF9geWglSnhiF0e1ewqnXnq8h1oNuNbjAi2A9MqFaXt//XGSloH9YFHe+rG87R5lc17gAmyhw==
+X-Sonic-MF: noreply@dmarc.yahoo.com
+X-Sonic-ID: 6e44adf4-24cb-4b3e-ab67-0da8b23e1665
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic324.consmr.mail.ne1.yahoo.com with HTTP; Wed, 27 Mar 2024 12:56:33 +0000
+Content-Transfer-Encoding: binary
+Content-Type: multipart/mixed; boundary="_----------=_1711544193229358182"
+MIME-Version: 1.0
+X-Mailer: MIME::Lite 3.030 (F2.84; T1.38; A2.12; B3.13; Q3.13)
+Date: Wed, 27 Mar 2024 05:56:33 -0700
+From: noreply@dmarc.yahoo.com
+To: reports@dmarc.jessica-kioschis.de
+Subject: Report Domain: jessica-kioschis.de Submitter: aol.com Report-ID: <1711502415.839837>
+Message-Id: <1711544193.767502@dmarc.yahoo.com>
+
+This is a multi-part message in MIME format.
+
+--_----------=_1711544193229358182
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+
+This is an aggregate DMARC report from Yahoo for your domain "jessica-kioschis.de".
+
+This domain has a DMARC record set up. You are receiving this report because your email address is included in the 'rua' tag which is part of that DMARC record. DMARC is set up in the DNS settings of your domain.
+
+If you have questions about DMARC, please refer to the DMARC.org website, or contact your email service or hosting provider.
+
+If you no longer wish to receive these reports, or if you would like them to be sent to a different location, please update the 'rua' tag of the DMARC record of your domain. To do this please contact your email, domain or hosting provider. Please do not contact us as we will not be able to help you with updates to the DNS settings of your domain.
+
+Please note that this email address is not monitored, and you will not receive a response if you reply to this email. For any feedback or questions, please reach out to dmarchelp@yahooinc.com.
+--_----------=_1711544193229358182
+Content-Disposition: attachment; filename="aol.com!jessica-kioschis.de!1711411200!1711497599.xml.gz"
+Content-Transfer-Encoding: base64
+Content-Type: application/gzip; name="aol.com!jessica-kioschis.de!1711411200!1711497599.xml.gz"
+
+H4sIAIEXBGYAA5VU0XKbMBB8br7Ck/cisM3YzKhKfiNPjCzOoBp0igRJ8/c5IlkQJ9NpnxB7y+3e
+6gb+8GfoNy/gvEbz677I8vsH8eOOnwGak1QXOm823IFFN9YDjLKRo/wACUbX1kYOIJ5kh8hZeo91
+GKTuRTNIpzro7ePbTNNGZQoHzkI1UqOCbkRxKIoy3+6LMjvuquPuwNlSjGwyAbWTpr1KEXaCVpuP
+r/dFsc1zzgKSCGBC8311KKuK9E3qx24aJslPE3OLvVZvtZ1OvfYdLHaQRjHiN3ivlfx50ehVp33W
+AHUOtciUzUUPwnMWDlfU27NwBM7PiFnxPElyNGpDXWyC1SiKebj5EKx+64oCVeiSQ4evSxAeJ6eg
+1lZs8yo7ltm2OGTljrOlkLgKJ0OKnIVDwqMovMh+ouyaVJnj0N6i1yNtlDA4218ja+KcgZWe8ljF
+ETxSEqGyZLIa9laXLixNyHUDFNtZ01IvX3YgG3D12eHw/UWtCdemXztxOY1d7cBP/bjqfmv/nzci
+DAs9qBGdaBHbnigJWJGCZgwlviy5fDLA15n9t5u/C61WlH3JYubHteNs+YW8A8oy5dhlBAAA
+
+--_----------=_1711544193229358182--
+

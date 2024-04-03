@@ -1,34 +1,39 @@
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
-import {
-  parseDmarcReportFromEmail,
-  type DmarcFeedback,
-} from "dmarc-report-parser";
+import { type DmarcFeedback } from "dmarc-report-parser";
+import { type Logger } from "pino";
 import { getDynamo, getDynamoTable } from "../lib/dynamodb";
+import { parseDmarcReportFromEmail } from "./email";
 
-export async function handleEmail(messageId: string, body: string) {
-  const logPrefix = `[${messageId}]`;
-  console.log("%s Handling email: %s", logPrefix, body);
-  const { reports } = await parseDmarcReportFromEmail(body);
-  await Promise.all(reports.map((report) => handleReport(report, logPrefix)));
+export async function handleEmail(
+  body: string,
+  logger: Logger
+): Promise<{ xmlFiles: Array<string | Buffer> }> {
+  const { reports, xmlFiles } = await parseDmarcReportFromEmail(body);
+
+  await Promise.all(
+    reports.map((report) =>
+      handleReport(
+        report,
+        logger.child({
+          reportId: report.reportMetadata?.reportId,
+          orgName: report.reportMetadata?.orgName,
+        })
+      )
+    )
+  );
+
+  return { xmlFiles };
 }
 
-async function handleReport(report: DmarcFeedback, logPrefix: string) {
-  console.log(
-    "%s Handling DMARC report: %s",
-    logPrefix,
-    JSON.stringify(report, null, 2)
-  );
+async function handleReport(report: DmarcFeedback, logger: Logger) {
+  logger.info("Handling DMARC report");
 
   await Promise.all(
     report.record.map(async (record) => {
-      const data = transformRecord(report, record, logPrefix);
+      const data = transformRecord(report, record, logger);
 
       if (data) {
-        console.log(
-          "%s Saving DMARC record: %s",
-          logPrefix,
-          JSON.stringify(data, null, 2)
-        );
+        logger.info({ id: data.id }, "Saving DMARC record.");
 
         await getDynamo().send(
           new PutCommand({
@@ -48,10 +53,10 @@ function transformRecord(
     identifiers,
     authResults: { spf, dkim },
   }: DmarcFeedback["record"][number],
-  logPrefix: string
+  logger: Logger
 ) {
   if (!reportMetadata) {
-    console.error("%s No report metadata found, skipping", logPrefix);
+    logger.error("No report metadata found, skipping");
     return;
   }
 

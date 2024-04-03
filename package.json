@@ -4,6 +4,7 @@
   "sideEffects": false,
   "scripts": {
     "clean": "shx rm -rf dist",
+    "test": "node --import tsx --test **/*.spec.ts",
     "build": "npx esbuild --bundle --platform=node --target=node20 --outdir=dist --define:process.env.NODE_ENV=\\\"production\\\" src/lambdas/*",
     "bundle": "ts-node --project tsconfig.local.json -r dotenv/config scripts/bundle-lambdas.ts",
     "infra:code": "npm run infra:code:generate && terraform -chdir=infrastructure/code apply --auto-approve",
@@ -16,11 +17,17 @@
     "@aws-sdk/client-s3": "^3.511.0",
     "@aws-sdk/client-sns": "^3.511.0",
     "@aws-sdk/lib-dynamodb": "^3.511.0",
-    "dmarc-report-parser": "^0.1.5"
+    "dmarc-report-parser": "^0.1.5",
+    "jszip": "^3.10.1",
+    "mailparser": "^3.6.9",
+    "pino": "^8.19.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.133",
+    "@types/mailparser": "^3.4.4",
     "@types/node": "^20.11.17",
+    "@types/xml2js": "^0.4.14",
     "aws-lambda": "^1.0.7",
     "dotenv": "^16.4.1",
     "esbuild": "^0.20.0",
@@ -28,9 +35,10 @@
     "shx": "^0.3.4",
     "terraform-generator": "^6.2.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   },
   "volta": {
-    "node": "20.11.0"
+    "node": "21.7.1"
   }
 }
