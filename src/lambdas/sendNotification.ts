@@ -29,8 +29,10 @@ async function sendNotification(records: Array<Record<string, unknown>>) {
       ? "pass"
       : "unknown";
 
+  if (overallResult === "pass") return;
+
   const text = `
-Evaluated ${records.length} records:
+Evaluated ${records.length} record${records.length > 1 ? "s" : ""}:
 - Pass: ${results.pass ?? 0}
 - Fail: ${results.fail ?? 0}
 - Unknown: ${results.unknown ?? 0}
